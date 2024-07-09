@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.map-container {
+  height: 100dvh;
+}
+
+.marker {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  width: 200px;
+}
+
+.marker p {
+  font-weight: 600;
+}
+
+.marker p span {
+  font-weight: normal;
+}
+
+.marker::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 14px solid white;
+}
+
+.delete-btn {
+  width: 24px;
+  height: 24px;
+  background-color: indianred;
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
