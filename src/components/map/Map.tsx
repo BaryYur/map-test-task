@@ -39,7 +39,7 @@ export const Map: React.FC = () => {
             latitude={marker.location.lat}
             longitude={marker.location.long}
             draggable
-            onDragEnd={(event) => onMarkerDragEnd(marker.documentId!, event)}
+            onDragEnd={(event: MarkerDragEvent) => onMarkerDragEnd(marker.documentId!, event)}
           >
             <div className="marker">
               <p>Quest: <span>{index + 1}</span></p>
