@@ -26,7 +26,9 @@ export const Map: React.FC = () => {
     <div className="map-container">
       <ReactMapGL
         {...viewport}
-        onMove={(newViewport) => setViewport(newViewport)}
+        onMove={(newViewport) => {
+          setViewport(newViewport.viewState);
+        }}
         mapboxAccessToken={MAPBOX_TOKEN}
         onClick={addQuestHandler}
         mapStyle="mapbox://styles/mapbox/streets-v9"
