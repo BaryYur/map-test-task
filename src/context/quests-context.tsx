@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Quest } from "../types";
 
 import { collection, getDocs, addDoc, deleteDoc, setDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db } from "../firebase/firebase.ts";
 
 import { format } from "date-fns";
 
