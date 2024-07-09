@@ -18,7 +18,7 @@ export const Map: React.FC = () => {
     addQuest({ location: { lat: event.lngLat.lat, long: event.lngLat.lng } });
   };
 
-  const onMarkerDragEnd = (documentId, event: MarkerDragEvent) => {
+  const onMarkerDragEnd = (documentId: string, event: MarkerDragEvent) => {
     updateQuest(documentId, { lat: event.lngLat.lat, long: event.lngLat.lng });
   };
 
@@ -39,7 +39,7 @@ export const Map: React.FC = () => {
             latitude={marker.location.lat}
             longitude={marker.location.long}
             draggable
-            onDragEnd={(event) => onMarkerDragEnd(marker.documentId, event)}
+            onDragEnd={(event) => onMarkerDragEnd(marker.documentId!, event)}
           >
             <div className="marker">
               <p>Quest: <span>{index + 1}</span></p>
