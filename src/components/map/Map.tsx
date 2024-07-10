@@ -5,7 +5,6 @@ import ReactMapGL, { MapLayerMouseEvent, Marker, MarkerDragEvent, MapRef } from 
 import useSupercluster from "use-supercluster";
 
 import { QuestsContext } from "../../context";
-import Supercluster from "supercluster";
 
 const MAPBOX_TOKEN = "pk.eyJ1IjoiYmFyeXl1ciIsImEiOiJjbHllbDVuY3EwM2ltMmtzYmVoMWxwNmNiIn0.luysOkvx840dZ5PRAzAmnw";
 
@@ -59,7 +58,8 @@ export const Map = () => {
       .flat()
     : null;
 
-  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const { clusters, supercluster } = useSupercluster<PointProperties>({
     points,
     bounds,
