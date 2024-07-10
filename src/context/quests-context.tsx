@@ -5,7 +5,7 @@ import { Quest } from "../types";
 import { collection, getDocs, addDoc, deleteDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebase.ts";
 
-import { format } from "date-fns";
+import { formatDate } from "../utils";
 
 type MarkersContextTypes = {
   quests: Quest[];
@@ -19,14 +19,6 @@ export const QuestsContext = React.createContext({} as MarkersContextTypes);
 export const QuestsContextProvider = ({ children } : { children: React.ReactNode }) => {
   const [quests, setQuests] = useState<Quest[]>([]);
 
-  const formatDate = (seconds: number) => {
-    const date = new Date(seconds * 1000);
-
-    const formattedDate = format(date, "HH:mm, MMM d, yyyy");
-
-    return formattedDate;
-  };
-
   const fetchQuests = async () => {
     try {
       await getDocs(collection(db, "quests"))
@@ -38,12 +30,18 @@ export const QuestsContextProvider = ({ children } : { children: React.ReactNode
                   lat: doc.data().location.lat,
                   long: doc.data().location.long,
                 },
-                timestamp: formatDate(doc.data().timestamp.seconds),
+                timestamp: doc.data().timestamp.seconds,
                 documentId: doc.id,
               }
             ));
 
-          setQuests(data);
+          const sortedQuests = data.sort((a, b) => {
+            return a.timestamp - b.timestamp;
+          });
+
+          sortedQuests.map(quest => quest.timestamp = formatDate(quest.timestamp));
+
+          setQuests(sortedQuests);
         });
     } catch (error) {
       console.error("Error fetching quests:", error);
@@ -70,15 +68,16 @@ export const QuestsContextProvider = ({ children } : { children: React.ReactNode
         timestamp: new Date(),
       });
 
-      setQuests(prevQuests => {
-        return prevQuests.map(quest => {
-          if (quest.documentId === documentId) {
-            return { ...quest, location: location };
-          } else {
-            return quest;
-          }
-        })
-      });
+      // setQuests(prevQuests => {
+      //   return prevQuests.map(quest => {
+      //     if (quest.documentId === documentId) {
+      //       return { ...quest, location: location };
+      //     } else {
+      //       return quest;
+      //     }
+      //   })
+      // });
+      await fetchQuests();
     } catch (error) {
       console.log(error);
     }
