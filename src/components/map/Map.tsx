@@ -60,7 +60,7 @@ export const Map = () => {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  const { clusters, supercluster } = useSupercluster<PointProperties>({
+  const { clusters, supercluster } = useSupercluster<PointProperties | null>({
     points,
     bounds,
     zoom: viewport.zoom,
