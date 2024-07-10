@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef } from "react";
 
 import ReactMapGL, { MapLayerMouseEvent, Marker, MarkerDragEvent, MapRef } from "react-map-gl";
 
