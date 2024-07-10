@@ -39,7 +39,7 @@ export const Map = () => {
     updateQuest(documentId, { lat: event.lngLat.lat, long: event.lngLat.lng });
   };
 
-  const points: Supercluster.PointFeature<PointProperties>[] = quests.map(quest => ({
+  const points = quests.map(quest => ({
     type: "Feature",
     properties: { cluster: false, documentId: quest.documentId, location: quest.location, timestamp: quest.timestamp },
     geometry: {
@@ -59,6 +59,7 @@ export const Map = () => {
       .flat()
     : null;
 
+  // @ts-ignore
   const { clusters, supercluster } = useSupercluster<PointProperties>({
     points,
     bounds,
