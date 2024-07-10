@@ -96,8 +96,8 @@ export const Map = () => {
                   <div
                     className="cluster-marker"
                     style={{
-                      width: `${40 + (pointCount / points.length) * 20}px`,
-                      height: `${40 + (pointCount / points.length) * 20}px`
+                      width: `${20 + (pointCount ? pointCount : 0 / points.length) * 20}px`,
+                      height: `${20 + (pointCount ? pointCount : 0 / points.length) * 20}px`
                     }}
                     onClick={() => {
                       const expansionZoom = Math.min(
@@ -133,8 +133,8 @@ export const Map = () => {
               >
                 <div className="marker">
                   <p>Quest {index + 1}</p>
-                  <p>Latitude: <span>{cluster.properties.location.lat}</span></p>
-                  <p>Longitude: <span>{cluster.properties.location.long}</span></p>
+                  <p>Latitude: <span>{cluster.properties?.location?.lat}</span></p>
+                  <p>Longitude: <span>{cluster.properties?.location?.long}</span></p>
                   <p>Timestamp: <span>{cluster.properties.timestamp}</span></p>
                   <button
                     className="delete-btn"

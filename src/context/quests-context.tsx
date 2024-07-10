@@ -68,16 +68,16 @@ export const QuestsContextProvider = ({ children } : { children: React.ReactNode
         timestamp: new Date(),
       });
 
-      // setQuests(prevQuests => {
-      //   return prevQuests.map(quest => {
-      //     if (quest.documentId === documentId) {
-      //       return { ...quest, location: location };
-      //     } else {
-      //       return quest;
-      //     }
-      //   })
-      // });
-      await fetchQuests();
+      setQuests(prevQuests => {
+        return prevQuests.map(quest => {
+          if (quest.documentId === documentId) {
+            return { ...quest, location: location };
+          } else {
+            return quest;
+          }
+        })
+      });
+      // await fetchQuests();
     } catch (error) {
       console.log(error);
     }
